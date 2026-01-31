@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAA | Golden African Art - Gueye Abdou Aziz</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #050505;
+            --card-bg: #111;
+            --transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* --- CONFIGURATION DE BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--dark); 
+            color: white; 
+            line-height: 1.7; 
+            overflow-x: hidden; 
+        }
+
+        /* --- BARRE DE NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 2000; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .logo img { height: 50px; }
+        .menu-btn { background: none; border: none; color: var(--gold); font-size: 1.1rem; cursor: pointer; letter-spacing: 2px; font-weight: 600; }
+
+        /* OVERLAY MENU */
+        .menu-overlay {
+            position: fixed; inset: 0; background: var(--dark); z-index: 3000;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .menu-overlay a { color: var(--gold); font-family: 'Playfair Display'; font-size: 2.5rem; text-decoration: none; margin: 20px; transition: 0.3s; }
+        .close-menu { position: absolute; top: 30px; right: 5%; font-size: 2.5rem; color: white; cursor: pointer; }
+
+        /* --- SECTIONS --- */
+        .section { padding: clamp(80px, 12vh, 150px) 10%; }
+        .hero { text-align: center; background: radial-gradient(circle, #1a1a1a, #050505); }
+        .hero h1 { font-family: 'Playfair Display'; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--gold); margin-bottom: 10px; }
+        
+        .bio-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; align-items: center; }
+        .bio-img { border: 1px solid var(--gold); padding: 15px; position: relative; }
+        .bio-img img { width: 100%; height: auto; border-radius: 2px; display: block; object-fit: cover; }
+
+        /* --- GALERIE ZOOMABLE --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(280px, 25vw, 400px), 1fr));
+            gap: 25px; padding: 20px 5% 100px;
+        }
+        .art-item { 
+            position: relative; overflow: hidden; aspect-ratio: 4/5; cursor: zoom-in;
+            border: 1px solid #222; transition: var(--transition);
+        }
+        .art-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); opacity: 0.8; }
+        .art-item:hover img { transform: scale(1.1); opacity: 1; filter: brightness(1.1); }
+
+        /* LIGHTBOX (ZOOM) */
+        #lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 5000; display: none; justify-content: center; align-items: center;
+            padding: 40px;
+        }
+        #lightbox img { max-width: 100%; max-height: 100%; border: 2px solid var(--gold); box-shadow: 0 0 50px rgba(212,175,55,0.3); }
+        .close-lightbox { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: white; cursor: pointer; }
+
+        /* --- LECTEUR AUDIO --- */
+        .audio-player {
+            position: fixed; left: 20px; bottom: 20px;
+            background: rgba(0, 0, 0, 0.85); border: 1px solid var(--gold);
+            padding: 10px 15px; border-radius: 40px;
+            display: flex; align-items: center; gap: 12px; z-index: 4000;
+            backdrop-filter: blur(10px); transition: var(--transition);
+        }
+        .audio-btn { background: none; border: none; color: var(--gold); font-size: 1.1rem; cursor: pointer; }
+        .volume-control { width: 0; overflow: hidden; transition: width 0.4s ease; display: flex; align-items: center; }
+        .audio-player:hover .volume-control { width: 70px; margin-right: 5px; }
+        input[type="range"] { -webkit-appearance: none; width: 100%; height: 3px; background: #333; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; cursor: pointer; }
+        .spinning { animation: rotateVinyl 4s linear infinite; }
+        @keyframes rotateVinyl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- FOOTER & PROTECTION --- */
+        footer { background: #000; padding: 80px 10% 40px; border-top: 1px solid #222; text-align: center; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .disclaimer { font-size: 0.75rem; color: #444; border-top: 1px solid #111; padding-top: 30px; font-style: italic; max-width: 900px; margin: 0 auto; line-height: 1.4; }
+
+        /* CONTACT FLOTTANT */
+        .sticky-contact { position: fixed; right: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 3500; }
+        .social-btn { width: 55px; height: 55px; background: var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: black; font-size: 1.3rem; text-decoration: none; transition: 0.3s; }
+        .social-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <span class="close-menu" onclick="toggleMenu()">&times;</span>
+        <a href="#accueil" onclick="toggleMenu()">Accueil</a>
+        <a href="#bio" onclick="toggleMenu()">Biographie</a>
+        <a href="#galerie" onclick="toggleMenu()">Galerie d'Art</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
+
+    <nav>
+        <div class="logo"><img src="identite_visuelle/logo.png" alt="GAA" onerror="this.src='https://via.placeholder.com/50x50?text=GAA'"></div>
+        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i> MENU</button>
+    </nav>
+
+    <section class="hero section" id="accueil">
+        <h1 class="animate__animated animate__fadeInDown">Abdou Aziz Gueye</h1>
+        <p class="animate__animated animate__fadeInUp" style="letter-spacing: 12px; font-weight: 200; text-transform: uppercase; font-size: 0.8rem;">Golden African Art</p>
+    </section>
+
+    <section class="section" id="bio">
+        <div class="bio-container">
+            <div class="bio-img animate__animated animate__fadeInLeft">
+                <img src="identite_visuelle\Aziz_Gueye_Artiste_2 .jpg" alt="Aziz Gueye" onerror="this.style.display='none';">
+            </div>
+            <div class="bio-content">
+                <h4 style="color: var(--gold); letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 10px;">ARTISTE VISUEL</h4>
+                <h2 style="font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Abdou Aziz Gueye</h2>
+                <p>Artiste peintre d'origine sénégalaise basé en France, Abdou Aziz Gueye fusionne les traditions de son pays natal avec une vision contemporaine. Inspiré par les scènes de vie quotidienne, il utilise la couleur pour transmettre des émotions universelles.</p>
+                <p style="margin-top: 15px;">Son travail, notamment le projet <strong>"Couleur d'Afrique"</strong>, est une célébration de la beauté, des symboles et des paysages africains, invitant le spectateur à une contemplation poétique du monde.</p>
+                <div style="margin-top: 35px; border-left: 3px solid var(--gold); padding-left: 20px; font-style: italic; font-size: 1.1rem; color: #ddd;">
+                    "Mon art est un hommage à la richesse des scènes ancestrales et au lien profond entre l'homme et la nature."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galerie">
+        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 50px;">Galerie d'Art</h2>
+        <div class="gallery-grid" id="artGallery">
+            </div>
+    </section>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightboxImg" src="">
+    </div>
+
+    <div class="audio-player">
+        <button class="audio-btn" id="playBtn" onclick="toggleAudio()">
+            <i class="fas fa-play" id="audioIcon"></i>
+        </button>
+        <div class="volume-control">
+            <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="changeVol(this.value)">
+        </div>
+        <div style="font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; font-weight: 600;">
+            <i class="fas fa-compact-disc" id="vinylIcon"></i> MUSIQUE
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="musique/afrobeat-nanymp3.mp3" type="audio/mpeg">
+    </audio>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <h3 style="color: var(--gold); font-family: 'Playfair Display'; margin-bottom: 15px;">Aziz Gueye</h3>
+                <p style="color: #888;">Portfolio Officiel - Rouen 2025</p>
+            </div>
+            <div>
+                <h3 style="color: var(--gold); font-family: 'Playfair Display'; margin-bottom: 15px;">Contact</h3>
+                <p>WhatsApp : +33 7 49 47 47 62</p>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <p><strong>MENTIONS LÉGALES :</strong> Ce site web est une vitrine digitale conçue par <strong>Michel</strong>. 
+            Michel agit exclusivement en tant que support technique bénévole pour la visibilité de l'artiste. 
+            La propriété intellectuelle des œuvres, les photos et les textes appartiennent entièrement à <strong>Gueye Abdou Aziz (GAA)</strong>.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-contact">
+        <a href="https://wa.me/33749474762" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-btn" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+
+    <script>
+        // MENU
+        function toggleMenu() {
+            const m = document.getElementById('menuOverlay');
+            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        // GÉNÉRATION DE LA GALERIE (53 IMAGES)
+        const gallery = document.getElementById('artGallery');
+        for (let i = 1; i <= 53; i++) {
+            const path = `peintures_principales/GAA_Peinture (${i}).jpg`;
+            const div = document.createElement('div');
+            div.className = 'art-item animate__animated animate__fadeInUp';
+            div.innerHTML = `<img src="${path}" loading="lazy" onclick="openLightbox('${path}')" onerror="this.parentElement.style.display='none'">`;
+            gallery.appendChild(div);
+        }
+
+        // LIGHTBOX
+        function openLightbox(p) {
+            document.getElementById('lightboxImg').src = p;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // MUSIQUE
+        const a = document.getElementById('bgMusic');
+        const ai = document.getElementById('audioIcon');
+        const vi = document.getElementById('vinylIcon');
+        function toggleAudio() {
+            if (a.paused) { a.play(); ai.className = 'fas fa-pause'; vi.classList.add('spinning'); }
+            else { a.pause(); ai.className = 'fas fa-play'; vi.classList.remove('spinning'); }
+        }
+        function changeVol(v) { a.volume = v; }
+    </script>
+
+</body>
+</html>
