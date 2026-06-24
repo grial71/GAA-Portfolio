@@ -13,7 +13,6 @@
         :root {
             --gold: #D4AF37;
             --dark: #050505;
-            --card-bg: #111;
             --transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
@@ -39,7 +38,7 @@
             align-items: center;
             padding: 0 5%;
             z-index: 2000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
 
         .logo img { height: 50px; }
@@ -71,7 +70,6 @@
             font-size: 2.5rem;
             text-decoration: none;
             margin: 20px;
-            transition: 0.3s;
         }
 
         .close-menu {
@@ -108,13 +106,11 @@
         .bio-img {
             border: 1px solid var(--gold);
             padding: 15px;
-            position: relative;
         }
 
         .bio-img img {
             width: 100%;
             height: auto;
-            border-radius: 2px;
             display: block;
             object-fit: cover;
         }
@@ -140,11 +136,11 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .art-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
             opacity: 1;
             filter: brightness(1.1);
         }
@@ -180,7 +176,7 @@
             position: fixed;
             left: 20px;
             bottom: 20px;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0,0,0,0.85);
             border: 1px solid var(--gold);
             padding: 10px 15px;
             border-radius: 40px;
@@ -189,7 +185,6 @@
             gap: 12px;
             z-index: 4000;
             backdrop-filter: blur(10px);
-            transition: var(--transition);
         }
 
         .audio-btn {
@@ -253,7 +248,7 @@
 
         .disclaimer {
             font-size: 0.75rem;
-            color: #444;
+            color: #555;
             border-top: 1px solid #111;
             padding-top: 30px;
             font-style: italic;
@@ -290,6 +285,22 @@
             transform: scale(1.1);
             box-shadow: 0 0 20px var(--gold);
         }
+
+        @media (max-width: 600px) {
+            .sticky-contact {
+                right: 12px;
+                bottom: 12px;
+            }
+
+            .audio-player {
+                left: 12px;
+                bottom: 12px;
+            }
+
+            .menu-overlay a {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 
@@ -307,6 +318,7 @@
         <div class="logo">
             <img src="identite_visuelle/logo.png" alt="Logo Golden African Art">
         </div>
+
         <button class="menu-btn" onclick="toggleMenu()">
             <i class="fas fa-bars"></i> MENU
         </button>
@@ -397,6 +409,7 @@
                 </h3>
                 <p>WhatsApp : +33 7 59 64 74 66</p>
                 <p>Email : gueyeabdouaziz@gmail.com</p>
+                <p>TikTok : @guye.abdou.aziz</p>
                 <p>Dakar - Sénégal</p>
             </div>
         </div>
@@ -411,11 +424,11 @@
     </footer>
 
     <div class="sticky-contact">
-        <a href="https://wa.me/33759647466" class="social-btn" target="_blank" title="WhatsApp">
+        <a href="https://wa.me/33759647466" class="social-btn" target="_blank" rel="noopener noreferrer" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
 
-        <a href="https://www.tiktok.com/@guye.abdou.aziz" class="social-btn" target="_blank" title="TikTok">
+        <a href="https://www.tiktok.com/@guye.abdou.aziz?is_from_webapp=1&sender_device=pc" class="social-btn" target="_blank" rel="noopener noreferrer" title="TikTok">
             <i class="fab fa-tiktok"></i>
         </a>
     </div>
