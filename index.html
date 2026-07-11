@@ -2,107 +2,343 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAA | Golden African Art - Gueye Abdou Aziz</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Portfolio officiel de l'artiste peintre sénégalais Abdou Aziz Gueye, fondateur de Golden African Art."
+    >
+
+    <title>GAA | Golden African Art - Abdou Aziz Gueye</title>
+
+    <!-- Icônes -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <!-- Polices -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Animations -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    >
 
     <style>
         :root {
             --gold: #D4AF37;
             --dark: #050505;
+            --dark-light: #111111;
+            --white: #ffffff;
             --transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-padding-top: 110px;
+        }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             background: var(--dark);
-            color: white;
+            color: var(--white);
             line-height: 1.7;
             overflow-x: hidden;
         }
 
+        body.menu-open,
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        /* ===========================
+           BARRE DE NAVIGATION
+        =========================== */
+
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            height:110px;
-            background: rgba(0,0,0,0.95);
+            min-height: 110px;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%;
+            gap: 20px;
+            padding: 10px 5%;
             z-index: 2000;
-            border-bottom: 1px solid rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-       .logo img{
-    height:90px;
-    width:auto;
-    display:block;
-}
+        .logo {
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 14px;
+        }
 
         .menu-btn {
-            background: none;
-            border: none;
+            min-height: 46px;
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 30px;
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             letter-spacing: 2px;
             font-weight: 600;
+            padding: 10px 18px;
+            transition: 0.3s ease;
         }
+
+        .menu-btn:hover,
+        .menu-btn:focus-visible {
+            background: var(--gold);
+            color: black;
+            outline: none;
+        }
+
+        /* ===========================
+           SÉLECTEUR DE LANGUE
+        =========================== */
+
+        .language-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector::before {
+            content: "\f0ac";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 16px;
+            color: var(--gold);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .language-selector select {
+            min-height: 46px;
+            appearance: none;
+            -webkit-appearance: none;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212, 175, 55, 0.12),
+                    rgba(255, 255, 255, 0.03)
+                );
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 30px;
+            cursor: pointer;
+            padding: 10px 42px 10px 44px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .language-selector::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            color: var(--gold);
+            pointer-events: none;
+            font-size: 0.7rem;
+        }
+
+        .language-selector select:hover,
+        .language-selector select:focus {
+            background: var(--gold);
+            color: black;
+        }
+
+        .language-selector select option {
+            background: #111;
+            color: white;
+        }
+
+        /* Conteneur Google Traduction caché */
+        #google_translate_element {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Masquer la barre supérieure de Google Traduction */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            height: 0 !important;
+            overflow: hidden !important;
+        }
+
+        /* ===========================
+           MENU PLEIN ÉCRAN
+        =========================== */
 
         .menu-overlay {
             position: fixed;
             inset: 0;
-            background: var(--dark);
+            background:
+                radial-gradient(circle at center, #171717, #050505 65%);
             z-index: 3000;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 80px 20px;
+            overflow-y: auto;
+        }
+
+        .menu-overlay.active {
+            display: flex;
         }
 
         .menu-overlay a {
             color: var(--gold);
-            font-family: 'Playfair Display';
-            font-size: 2.5rem;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 6vw, 3.2rem);
             text-decoration: none;
-            margin: 20px;
+            margin: 12px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .menu-overlay a:hover,
+        .menu-overlay a:focus-visible {
+            color: white;
+            transform: scale(1.04);
+            outline: none;
         }
 
         .close-menu {
             position: absolute;
-            top: 30px;
+            top: 24px;
             right: 5%;
-            font-size: 2.5rem;
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
             color: white;
             cursor: pointer;
+            transition: 0.3s ease;
         }
 
-        .section { padding: clamp(80px, 12vh, 150px) 10%; }
+        .close-menu:hover {
+            color: black;
+            background: var(--gold);
+        }
+
+        /* ===========================
+           SECTIONS
+        =========================== */
+
+        .section {
+            padding: clamp(80px, 12vh, 150px) 10%;
+        }
 
         .hero {
+            min-height: 58vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            background: radial-gradient(circle, #1a1a1a, #050505);
-            padding-top: 160px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(212, 175, 55, 0.08),
+                    #050505 65%
+                );
+            padding-top: 170px;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display';
+            font-family: "Playfair Display", serif;
             font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--gold);
             margin-bottom: 10px;
+            line-height: 1.15;
         }
+
+        .hero-subtitle {
+            letter-spacing: clamp(5px, 2vw, 12px);
+            font-weight: 200;
+            text-transform: uppercase;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            padding-left: 10px;
+        }
+
+        /* ===========================
+           BIOGRAPHIE
+        =========================== */
 
         .bio-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns:
+                repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 50px;
             align-items: center;
         }
@@ -110,6 +346,7 @@
         .bio-img {
             border: 1px solid var(--gold);
             padding: 15px;
+            background: rgba(212, 175, 55, 0.03);
         }
 
         .bio-img img {
@@ -119,9 +356,61 @@
             object-fit: cover;
         }
 
+        .bio-label {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .bio-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .bio-content p + p {
+            margin-top: 15px;
+        }
+
+        .artist-quote {
+            margin-top: 35px;
+            border-left: 3px solid var(--gold);
+            padding-left: 20px;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #dddddd;
+        }
+
+        /* ===========================
+           GALERIE
+        =========================== */
+
+        #galerie {
+            padding-top: 80px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            color: #999;
+            max-width: 750px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(clamp(280px, 25vw, 400px), 1fr));
+            grid-template-columns:
+                repeat(auto-fill, minmax(min(100%, 260px), 1fr));
             gap: 25px;
             padding: 20px 5% 100px;
         }
@@ -129,58 +418,120 @@
         .art-item {
             position: relative;
             overflow: hidden;
-            aspect-ratio: 4/5;
+            aspect-ratio: 4 / 5;
             cursor: zoom-in;
             border: 1px solid #222;
+            background: #101010;
             transition: var(--transition);
+        }
+
+        .art-item::after {
+            content: "\f00e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(-50%, -35%);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--gold);
+            opacity: 0;
+            transition: 0.35s ease;
+            pointer-events: none;
+        }
+
+        .art-item:hover {
+            border-color: rgba(212, 175, 55, 0.75);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+            transform: translateY(-5px);
+        }
+
+        .art-item:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%);
         }
 
         .art-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: var(--transition);
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         .art-item:hover img {
-            transform: scale(1.08);
+            transform: scale(1.07);
             opacity: 1;
-            filter: brightness(1.1);
+            filter: brightness(1.08);
         }
+
+        /* ===========================
+           VISIONNEUSE PLEIN ÉCRAN
+        =========================== */
 
         #lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0, 0, 0, 0.97);
             z-index: 5000;
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 70px 40px 40px;
+        }
+
+        #lightbox.active {
+            display: flex;
         }
 
         #lightbox img {
             max-width: 100%;
             max-height: 100%;
+            object-fit: contain;
             border: 2px solid var(--gold);
-            box-shadow: 0 0 50px rgba(212,175,55,0.3);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
         }
 
         .close-lightbox {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 3rem;
+            top: 15px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.6rem;
             color: white;
             cursor: pointer;
+            z-index: 2;
         }
+
+        .lightbox-counter {
+            position: absolute;
+            top: 29px;
+            left: 30px;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* ===========================
+           LECTEUR MUSICAL
+        =========================== */
 
         .audio-player {
             position: fixed;
             left: 20px;
             bottom: 20px;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.88);
             border: 1px solid var(--gold);
             padding: 10px 15px;
             border-radius: 40px;
@@ -189,6 +540,7 @@
             gap: 12px;
             z-index: 4000;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .audio-btn {
@@ -197,6 +549,8 @@
             color: var(--gold);
             font-size: 1.1rem;
             cursor: pointer;
+            width: 28px;
+            height: 28px;
         }
 
         .volume-control {
@@ -207,13 +561,15 @@
             align-items: center;
         }
 
-        .audio-player:hover .volume-control {
+        .audio-player:hover .volume-control,
+        .audio-player:focus-within .volume-control {
             width: 70px;
             margin-right: 5px;
         }
 
         input[type="range"] {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             height: 3px;
             background: #333;
@@ -222,44 +578,48 @@
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 10px;
-            height: 10px;
+            appearance: none;
+            width: 11px;
+            height: 11px;
             background: var(--gold);
             border-radius: 50%;
             cursor: pointer;
         }
 
-        .spinning { animation: rotateVinyl 4s linear infinite; }
+        input[type="range"]::-moz-range-thumb {
+            width: 11px;
+            height: 11px;
+            background: var(--gold);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .audio-label {
+            font-size: 0.65rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .spinning {
+            animation: rotateVinyl 4s linear infinite;
+        }
 
         @keyframes rotateVinyl {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        footer {
-            background: #000;
-            padding: 80px 10% 40px;
-            border-top: 1px solid #222;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .disclaimer {
-            font-size: 0.75rem;
-            color: #555;
-            border-top: 1px solid #111;
-            padding-top: 30px;
-            font-style: italic;
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.4;
-        }
+        /* ===========================
+           CONTACTS FIXES
+        =========================== */
 
         .sticky-contact {
             position: fixed;
@@ -282,27 +642,244 @@
             color: black;
             font-size: 1.3rem;
             text-decoration: none;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
-        .social-btn:hover {
+        .social-btn:hover,
+        .social-btn:focus-visible {
             transform: scale(1.1);
             box-shadow: 0 0 20px var(--gold);
+            outline: none;
         }
 
+        /* ===========================
+           PIED DE PAGE
+        =========================== */
+
+        footer {
+            background: #000;
+            padding: 80px 10% 120px;
+            border-top: 1px solid #222;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-title {
+            color: var(--gold);
+            font-family: "Playfair Display", serif;
+            margin-bottom: 15px;
+        }
+
+        .footer-muted {
+            color: #888;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            color: var(--gold);
+        }
+
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #666;
+            border-top: 1px solid #151515;
+            padding-top: 30px;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* ===========================
+           LANGUE ARABE
+        =========================== */
+
+        html[dir="rtl"] body {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] .artist-quote {
+            border-left: none;
+            border-right: 3px solid var(--gold);
+            padding-left: 0;
+            padding-right: 20px;
+        }
+
+        html[dir="rtl"] .language-selector::before {
+            left: auto;
+            right: 16px;
+        }
+
+        html[dir="rtl"] .language-selector::after {
+            right: auto;
+            left: 16px;
+        }
+
+        html[dir="rtl"] .language-selector select {
+            padding: 10px 44px 10px 42px;
+        }
+
+        /* ===========================
+           RESPONSIVE TABLETTE
+        =========================== */
+
+        @media (max-width: 850px) {
+            nav {
+                min-height: 100px;
+                padding: 8px 4%;
+            }
+
+            .logo img {
+                height: 78px;
+            }
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .language-selector select {
+                width: 52px;
+                padding-left: 52px;
+                padding-right: 0;
+                overflow: hidden;
+            }
+
+            .language-selector::after {
+                display: none;
+            }
+
+            .menu-btn {
+                font-size: 0;
+                width: 48px;
+                height: 48px;
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .menu-btn i {
+                font-size: 1.15rem;
+            }
+
+            .hero {
+                padding-top: 150px;
+            }
+        }
+
+        /* ===========================
+           RESPONSIVE TÉLÉPHONE
+        =========================== */
+
         @media (max-width: 600px) {
+            html {
+                scroll-padding-top: 88px;
+            }
+
+            nav {
+                min-height: 88px;
+                padding: 6px 12px;
+            }
+
+            .logo img {
+                height: 68px;
+            }
+
+            .hero {
+                min-height: 48vh;
+                padding-top: 125px;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .section {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .gallery-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .art-item {
+                aspect-ratio: 4 / 5;
+            }
+
             .sticky-contact {
                 right: 12px;
                 bottom: 12px;
             }
 
+            .social-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.15rem;
+            }
+
             .audio-player {
                 left: 12px;
                 bottom: 12px;
+                padding: 9px 12px;
             }
 
-            .menu-overlay a {
-                font-size: 2rem;
+            .volume-control {
+                display: none;
+            }
+
+            .audio-label {
+                font-size: 0.58rem;
+            }
+
+            #lightbox {
+                padding: 70px 10px 20px;
+            }
+
+            .lightbox-counter {
+                left: 15px;
+            }
+
+            .close-lightbox {
+                right: 10px;
+            }
+
+            footer {
+                padding-left: 6%;
+                padding-right: 6%;
+                padding-bottom: 120px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .logo img {
+                height: 59px;
+            }
+
+            .language-selector select,
+            .menu-btn {
+                width: 43px;
+                height: 43px;
+                min-height: 43px;
+            }
+
+            .language-selector select {
+                padding-left: 43px;
+            }
+
+            .language-selector::before {
+                left: 13px;
             }
         }
     </style>
@@ -310,185 +887,610 @@
 
 <body>
 
-    <div class="menu-overlay" id="menuOverlay">
-        <span class="close-menu" onclick="toggleMenu()">&times;</span>
-        <a href="#accueil" onclick="toggleMenu()">Accueil</a>
-        <a href="#bio" onclick="toggleMenu()">Biographie</a>
-        <a href="#galerie" onclick="toggleMenu()">Galerie d'Art</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <!-- Google Traduction -->
+    <div id="google_translate_element"></div>
+
+    <!-- Menu plein écran -->
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    >
+        <span
+            class="close-menu"
+            onclick="closeMenu()"
+            role="button"
+            tabindex="0"
+            aria-label="Fermer le menu"
+        >
+            &times;
+        </span>
+
+        <a href="#accueil" onclick="closeMenu()">Accueil</a>
+        <a href="#bio" onclick="closeMenu()">Biographie</a>
+        <a href="#galerie" onclick="closeMenu()">Galerie d'Art</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
     </div>
 
+    <!-- Navigation fixe -->
     <nav>
         <div class="logo">
-            <img src="identite_visuelle/logo.png" alt="Logo Golden African Art">
+            <a href="#accueil" aria-label="Retour à l'accueil">
+                <img
+                    src="identite_visuelle/logo.png"
+                    alt="Logo Golden African Art"
+                >
+            </a>
         </div>
 
-        <button class="menu-btn" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i> MENU
-        </button>
+        <div class="nav-actions">
+
+            <!-- Sélection de la langue -->
+            <div
+                class="language-selector"
+                title="Choisir la langue"
+            >
+                <select
+                    id="languageSelect"
+                    onchange="changeLanguage(this.value)"
+                    aria-label="Choisir la langue du site"
+                >
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
+
+            <!-- Bouton menu -->
+            <button
+                class="menu-btn"
+                type="button"
+                onclick="openMenu()"
+                aria-label="Ouvrir le menu"
+            >
+                <i class="fas fa-bars"></i>
+                <span> MENU</span>
+            </button>
+        </div>
     </nav>
 
-    <section class="hero section" id="accueil">
-        <h1 class="animate__animated animate__fadeInDown">Abdou Aziz Gueye</h1>
-        <p class="animate__animated animate__fadeInUp" style="letter-spacing: 12px; font-weight: 200; text-transform: uppercase; font-size: 0.8rem;">
+    <!-- Accueil -->
+    <section
+        class="hero section"
+        id="accueil"
+    >
+        <h1 class="animate__animated animate__fadeInDown">
+            Abdou Aziz Gueye
+        </h1>
+
+        <p
+            class="hero-subtitle animate__animated animate__fadeInUp"
+        >
             Golden African Art
         </p>
     </section>
 
-    <section class="section" id="bio">
+    <!-- Biographie -->
+    <section
+        class="section"
+        id="bio"
+    >
         <div class="bio-container">
+
             <div class="bio-img animate__animated animate__fadeInLeft">
-               <img src="identite_visuelle/Aziz_Gueye_Artiste.jpg">
+                <img
+                    src="identite_visuelle/Aziz_Gueye_Artiste.jpg"
+                    alt="Abdou Aziz Gueye, artiste peintre de Golden African Art"
+                    loading="lazy"
+                >
             </div>
 
             <div class="bio-content">
-                <h4 style="color: var(--gold); letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 10px;">
+                <h4 class="bio-label">
                     ARTISTE VISUEL
                 </h4>
 
-                <h2 style="font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">
+                <h2 class="bio-title">
                     Abdou Aziz Gueye
                 </h2>
 
                 <p>
-                    Artiste peintre d'origine sénégalaise basé en France, Abdou Aziz Gueye fusionne les traditions de son pays natal avec une vision contemporaine.
-                    Inspiré par les scènes de vie quotidienne, il utilise la couleur pour transmettre des émotions universelles.
+                    Artiste peintre d'origine sénégalaise basé en France,
+                    Abdou Aziz Gueye fusionne les traditions de son pays
+                    natal avec une vision contemporaine. Inspiré par les
+                    scènes de vie quotidienne, il utilise la couleur pour
+                    transmettre des émotions universelles.
                 </p>
 
-                <p style="margin-top: 15px;">
-                    Son travail, notamment le projet <strong>Couleur d'Afrique</strong>, est une célébration de la beauté, des symboles et des paysages africains,
-                    invitant le spectateur à une contemplation poétique du monde.
+                <p>
+                    Son travail, notamment le projet
+                    <strong>Couleur d'Afrique</strong>, est une célébration
+                    de la beauté, des symboles et des paysages africains,
+                    invitant le spectateur à une contemplation poétique
+                    du monde.
                 </p>
 
-                <div style="margin-top: 35px; border-left: 3px solid var(--gold); padding-left: 20px; font-style: italic; font-size: 1.1rem; color: #ddd;">
-                    "Mon art est un hommage à la richesse des scènes ancestrales et au lien profond entre l'homme et la nature."
+                <div class="artist-quote">
+                    « Mon art est un hommage à la richesse des scènes
+                    ancestrales et au lien profond entre l'homme et la
+                    nature. »
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Galerie -->
     <section id="galerie">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 50px;">
+        <h2 class="gallery-title">
             Galerie d'Art
         </h2>
 
-        <div class="gallery-grid" id="artGallery"></div>
+        <p class="gallery-intro">
+            Découvrez une sélection de 42 œuvres de Golden African Art.
+            Cliquez sur un tableau pour l'afficher en plein écran.
+        </p>
+
+        <div
+            class="gallery-grid"
+            id="artGallery"
+        ></div>
     </section>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <img id="lightboxImg" src="" alt="Œuvre Golden African Art">
+    <!-- Visionneuse -->
+    <div
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Affichage de l'œuvre en plein écran"
+        onclick="closeLightboxFromBackground(event)"
+    >
+        <div
+            class="lightbox-counter"
+            id="lightboxCounter"
+        >
+            Œuvre 1 sur 42
+        </div>
+
+        <span
+            class="close-lightbox"
+            onclick="closeLightbox()"
+            role="button"
+            tabindex="0"
+            aria-label="Fermer l'image"
+        >
+            &times;
+        </span>
+
+        <img
+            id="lightboxImg"
+            src=""
+            alt="Œuvre Golden African Art"
+        >
     </div>
 
+    <!-- Lecteur musical -->
     <div class="audio-player">
-        <button class="audio-btn" id="playBtn" onclick="toggleAudio()">
-            <i class="fas fa-play" id="audioIcon"></i>
+        <button
+            class="audio-btn"
+            id="playBtn"
+            type="button"
+            onclick="toggleAudio()"
+            aria-label="Lire ou arrêter la musique"
+        >
+            <i
+                class="fas fa-play"
+                id="audioIcon"
+            ></i>
         </button>
 
         <div class="volume-control">
-            <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="changeVol(this.value)">
+            <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="0.5"
+                oninput="changeVol(this.value)"
+                aria-label="Volume de la musique"
+            >
         </div>
 
-        <div style="font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; font-weight: 600;">
-            <i class="fas fa-compact-disc" id="vinylIcon"></i> MUSIQUE
+        <div class="audio-label">
+            <i
+                class="fas fa-compact-disc"
+                id="vinylIcon"
+            ></i>
+            MUSIQUE
         </div>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="musique/afrobeat-nanymp3.mp3" type="audio/mpeg">
+    <audio
+        id="bgMusic"
+        loop
+        preload="none"
+    >
+        <source
+            src="musique/afrobeat-nanymp3.mp3"
+            type="audio/mpeg"
+        >
+        Votre navigateur ne prend pas en charge la lecture audio.
     </audio>
 
+    <!-- Pied de page -->
     <footer id="contact">
         <div class="footer-content">
+
             <div>
-                <h3 style="color: var(--gold); font-family: 'Playfair Display'; margin-bottom: 15px;">
+                <h3 class="footer-title">
                     Golden African Art
                 </h3>
-                <p style="color: #888;">Portfolio officiel - Abdou Aziz Gueye</p>
+
+                <p class="footer-muted">
+                    Portfolio officiel - Abdou Aziz Gueye
+                </p>
             </div>
 
             <div>
-                <h3 style="color: var(--gold); font-family: 'Playfair Display'; margin-bottom: 15px;">
+                <h3 class="footer-title">
                     Contact
                 </h3>
-                <p>WhatsApp : +33 7 59 64 74 66</p>
-                <p>Email : gueyeabdouaziz@gmail.com</p>
-                <p>TikTok : @guye.abdou.aziz</p>
-                <p>Dakar - Sénégal</p>
+
+                <p>
+                    WhatsApp :
+                    <a
+                        class="contact-link"
+                        href="https://wa.me/33759647466"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        +33 7 59 64 74 66
+                    </a>
+                </p>
+
+                <p>
+                    Email :
+                    <a
+                        class="contact-link"
+                        href="mailto:gueyeabdouaziz@gmail.com"
+                    >
+                        gueyeabdouaziz@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    TikTok :
+                    <a
+                        class="contact-link"
+                        href="https://www.tiktok.com/@guye.abdou.aziz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        @guye.abdou.aziz
+                    </a>
+                </p>
+
+                <p>
+                    France - Dakar - Sénégal
+                </p>
             </div>
         </div>
 
         <div class="disclaimer">
             <p>
-                <strong>MENTIONS LÉGALES :</strong> Ce site web est une vitrine digitale conçue par <strong>Michel</strong>.
-                Michel agit exclusivement en tant que support technique bénévole pour la visibilité de l'artiste.
-                La propriété intellectuelle des œuvres, les photos et les textes appartiennent entièrement à <strong>Gueye Abdou Aziz - Golden African Art</strong>.
+                <strong>MENTIONS LÉGALES :</strong>
+                Ce site web est une vitrine digitale conçue par
+                <strong>Michel</strong>. Michel agit exclusivement en tant
+                que support technique bénévole pour la visibilité de
+                l'artiste. La propriété intellectuelle des œuvres, les
+                photos et les textes appartiennent entièrement à
+                <strong>
+                    Gueye Abdou Aziz - Golden African Art
+                </strong>.
             </p>
         </div>
     </footer>
 
+    <!-- Boutons fixes -->
     <div class="sticky-contact">
-        <a href="https://wa.me/33759647466" class="social-btn" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+        <a
+            href="https://wa.me/33759647466"
+            class="social-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Contacter Golden African Art sur WhatsApp"
+            aria-label="WhatsApp"
+        >
             <i class="fab fa-whatsapp"></i>
         </a>
 
-        <a href="https://www.tiktok.com/@guye.abdou.aziz?is_from_webapp=1&sender_device=pc" class="social-btn" target="_blank" rel="noopener noreferrer" title="TikTok">
+        <a
+            href="https://www.tiktok.com/@guye.abdou.aziz"
+            class="social-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Voir Golden African Art sur TikTok"
+            aria-label="TikTok"
+        >
             <i class="fab fa-tiktok"></i>
         </a>
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menuOverlay');
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        /* ===========================
+           MENU
+        =========================== */
+
+        const menuOverlay = document.getElementById("menuOverlay");
+
+        function openMenu() {
+            menuOverlay.classList.add("active");
+            menuOverlay.setAttribute("aria-hidden", "false");
+            document.body.classList.add("menu-open");
         }
 
-        const gallery = document.getElementById('artGallery');
+        function closeMenu() {
+            menuOverlay.classList.remove("active");
+            menuOverlay.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("menu-open");
+        }
 
-        for (let i = 1; i <= 53; i++) {
-            const path = `peintures_principales/GAA_Peinture (${i}).jpg`;
+        /* ===========================
+           GALERIE DE 42 IMAGES JPEG
+        =========================== */
 
-            const div = document.createElement('div');
-            div.className = 'art-item animate__animated animate__fadeInUp';
+        const totalImages = 42;
+        const gallery = document.getElementById("artGallery");
 
-            div.innerHTML = `
-                <img src="${path}" loading="lazy" alt="Œuvre Golden African Art ${i}" onclick="openLightbox('${path}')" onerror="this.parentElement.style.display='none'">
+        for (let i = 1; i <= totalImages; i++) {
+            const path =
+                `peintures_principales/GAA_Peinture (${i}).jpeg`;
+
+            const artItem = document.createElement("div");
+
+            artItem.className =
+                "art-item animate__animated animate__fadeInUp";
+
+            artItem.setAttribute(
+                "aria-label",
+                `Afficher l'œuvre Golden African Art numéro ${i}`
+            );
+
+            artItem.innerHTML = `
+                <img
+                    src="${path}"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Œuvre Golden African Art numéro ${i}"
+                    onclick="openLightbox('${path}', ${i})"
+                    onerror="handleImageError(this, ${i})"
+                >
             `;
 
-            gallery.appendChild(div);
+            gallery.appendChild(artItem);
         }
 
-        function openLightbox(path) {
-            document.getElementById('lightboxImg').src = path;
-            document.getElementById('lightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        function handleImageError(image, imageNumber) {
+            console.error(
+                `Image introuvable : GAA_Peinture (${imageNumber}).jpeg`
+            );
+
+            image.parentElement.style.display = "none";
+        }
+
+        /* ===========================
+           VISIONNEUSE
+        =========================== */
+
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightboxImg");
+        const lightboxCounter =
+            document.getElementById("lightboxCounter");
+
+        function openLightbox(path, imageNumber) {
+            lightboxImg.src = path;
+
+            lightboxImg.alt =
+                `Œuvre Golden African Art numéro ${imageNumber}`;
+
+            lightboxCounter.textContent =
+                `Œuvre ${imageNumber} sur ${totalImages}`;
+
+            lightbox.classList.add("active");
+            document.body.classList.add("lightbox-open");
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            lightbox.classList.remove("active");
+            document.body.classList.remove("lightbox-open");
+            lightboxImg.src = "";
         }
 
-        const audio = document.getElementById('bgMusic');
-        const audioIcon = document.getElementById('audioIcon');
-        const vinylIcon = document.getElementById('vinylIcon');
+        function closeLightboxFromBackground(event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        }
 
-        function toggleAudio() {
-            if (audio.paused) {
-                audio.play();
-                audioIcon.className = 'fas fa-pause';
-                vinylIcon.classList.add('spinning');
-            } else {
-                audio.pause();
-                audioIcon.className = 'fas fa-play';
-                vinylIcon.classList.remove('spinning');
+        /* ===========================
+           MUSIQUE
+        =========================== */
+
+        const audio = document.getElementById("bgMusic");
+        const audioIcon = document.getElementById("audioIcon");
+        const vinylIcon = document.getElementById("vinylIcon");
+
+        audio.volume = 0.5;
+
+        async function toggleAudio() {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+
+                    audioIcon.className = "fas fa-pause";
+                    vinylIcon.classList.add("spinning");
+                } else {
+                    audio.pause();
+
+                    audioIcon.className = "fas fa-play";
+                    vinylIcon.classList.remove("spinning");
+                }
+            } catch (error) {
+                console.error(
+                    "La lecture automatique a été bloquée :",
+                    error
+                );
             }
         }
 
         function changeVol(value) {
-            audio.volume = value;
+            audio.volume = Number(value);
         }
+
+        /* ===========================
+           GOOGLE TRADUCTION
+        =========================== */
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: "fr",
+                    includedLanguages: "fr,es,en,ar",
+                    autoDisplay: false
+                },
+                "google_translate_element"
+            );
+
+            restoreSelectedLanguage();
+        }
+
+        function changeLanguage(language) {
+            setPageDirection(language);
+
+            if (language === "fr") {
+                clearTranslationCookies();
+                window.location.reload();
+                return;
+            }
+
+            applyGoogleTranslation(language, 0);
+        }
+
+        function applyGoogleTranslation(language, attempt) {
+            const googleSelect =
+                document.querySelector(".goog-te-combo");
+
+            if (googleSelect) {
+                googleSelect.value = language;
+
+                googleSelect.dispatchEvent(
+                    new Event("change", {
+                        bubbles: true
+                    })
+                );
+
+                localStorage.setItem(
+                    "gaaSelectedLanguage",
+                    language
+                );
+
+                return;
+            }
+
+            if (attempt < 20) {
+                setTimeout(
+                    () => {
+                        applyGoogleTranslation(
+                            language,
+                            attempt + 1
+                        );
+                    },
+                    300
+                );
+            } else {
+                setTranslationCookie(language);
+                window.location.reload();
+            }
+        }
+
+        function setTranslationCookie(language) {
+            const cookieValue = `/fr/${language}`;
+
+            document.cookie =
+                `googtrans=${cookieValue}; path=/;`;
+
+            if (window.location.hostname) {
+                document.cookie =
+                    `googtrans=${cookieValue}; path=/; domain=${window.location.hostname}`;
+            }
+
+            localStorage.setItem(
+                "gaaSelectedLanguage",
+                language
+            );
+        }
+
+        function clearTranslationCookies() {
+            document.cookie =
+                "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            if (window.location.hostname) {
+                document.cookie =
+                    `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+            }
+
+            localStorage.setItem(
+                "gaaSelectedLanguage",
+                "fr"
+            );
+
+            setPageDirection("fr");
+        }
+
+        function restoreSelectedLanguage() {
+            const savedLanguage =
+                localStorage.getItem("gaaSelectedLanguage");
+
+            if (!savedLanguage) {
+                return;
+            }
+
+            const languageSelect =
+                document.getElementById("languageSelect");
+
+            languageSelect.value = savedLanguage;
+            setPageDirection(savedLanguage);
+        }
+
+        function setPageDirection(language) {
+            const html = document.documentElement;
+
+            if (language === "ar") {
+                html.setAttribute("dir", "rtl");
+                html.setAttribute("lang", "ar");
+            } else {
+                html.setAttribute("dir", "ltr");
+                html.setAttribute("lang", language);
+            }
+        }
+
+        /* ===========================
+           CLAVIER
+        =========================== */
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeMenu();
+                closeLightbox();
+            }
+        });
     </script>
+
+    <!-- Chargement de Google Traduction -->
+    <script
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        defer
+    ></script>
 
 </body>
 </html>
