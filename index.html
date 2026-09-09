@@ -882,6 +882,57 @@
                 left: 13px;
             }
         }
+
+        /* Réalisation bénévole */
+        .volunteer-credit {
+            padding: clamp(55px, 8vw, 90px) 10%;
+            background: var(--dark-light);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .volunteer-credit__content {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .volunteer-credit h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            line-height: 1.25;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .volunteer-credit p {
+            color: #dddddd;
+            margin-bottom: 18px;
+        }
+
+        .volunteer-credit__link {
+            display: inline-block;
+            max-width: 100%;
+            margin-top: 14px;
+            padding: 14px 24px;
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .volunteer-credit__link:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .volunteer-credit__link:focus-visible {
+            outline: 2px solid var(--white);
+            outline-offset: 5px;
+        }
     </style>
 </head>
 
@@ -1116,6 +1167,26 @@
         >
         Votre navigateur ne prend pas en charge la lecture audio.
     </audio>
+
+    <!-- Réalisation bénévole -->
+    <section class="volunteer-credit" aria-labelledby="volunteer-credit-title">
+        <div class="volunteer-credit__content">
+            <h2 id="volunteer-credit-title">Réalisation bénévole</h2>
+            <p>
+                Ce site a été conçu et développé bénévolement par Michel Quinones
+                dans le cadre du projet « Le Numérique vient à vous ».
+            </p>
+            <p>
+                Cette initiative accompagne des artistes, des associations,
+                des créateurs, des commerçants, des particuliers et des porteurs
+                de projets afin de les aider à développer leur présence numérique
+                et à gagner progressivement en autonomie.
+            </p>
+            <a class="volunteer-credit__link" href="https://www.lenumeriquevientavous.fr">
+                Découvrir le Numérique vient à vous
+            </a>
+        </div>
+    </section>
 
     <!-- Pied de page -->
     <footer id="contact">
